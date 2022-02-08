@@ -1,0 +1,69 @@
+{
+  "version": 8,
+  "name": "Basic",
+  "glyphs": "http://nas.ehanghai.cn:90/fonts/{fontstack}/{range}.pbf",
+  "sources": {
+    "mapbox": {
+      "tiles": [
+        "http://t1.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=1e023b09bd75a8edbef1f34991290f11"
+      ],
+      "type": "raster",
+      "tileSize": 256,
+      "minzoom": 0,
+      "maxzoom": 16
+    },
+    "mapbox1": {
+      "tiles": [
+        "http://t1.tianditu.gov.cn/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=1e023b09bd75a8edbef1f34991290f11"
+      ],
+      "type": "raster",
+      "tileSize": 256,
+      "minzoom": 0,
+      "maxzoom": 16
+    },
+    "mapbox2": {
+      "tiles": [
+        "http://pngchart.ehanghai.cn/hltzy/{z}/{y}/{x}.png"
+      ],
+      "type": "raster",
+      "tileSize": 256,
+      "minzoom": 0,
+      "maxzoom": 16
+    },
+    "mapSplitLine": {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": []
+      }
+    }
+  },
+  "layers": [{
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "rgba(212,234,238,1)"
+      }
+    },
+    {
+      "id": "mapbox",
+      "source": "mapbox",
+      "type": "raster"
+    },
+    {
+      "id": "mapbox1",
+      "source": "mapbox1",
+      "type": "raster"
+    },
+    {
+      "id": "mapbox2",
+      "source": "mapbox2",
+      "type": "raster"
+    },
+    {
+      "id": "mapSplitLine",
+      "source": "mapSplitLine",
+      "type": "symbol"
+    }
+  ]
+}
