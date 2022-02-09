@@ -121,21 +121,6 @@ class Wind {
         }
       }
     })
-    
-      // Draw new particle trails.
-      // windData.forEach((bucket: any, i: number) => {
-      //     if (bucket.length > 0 && this.animationCtx) {
-      //       this.animationCtx.beginPath();
-      //       this.animationCtx.strokeStyle = colorStyles[i];
-      //       bucket.forEach((particle: any) => {
-      //           this.animationCtx?.moveTo(particle.x, particle.y);
-      //           this.animationCtx?.lineTo(particle.xt, particle.yt);
-      //           particle.x = particle.xt;
-      //           particle.y = particle.yt;
-      //       });
-      //       this.animationCtx.stroke();
-      //     }
-      // });
       const geojson:any = {
         "type": "geojson",
         "data": {

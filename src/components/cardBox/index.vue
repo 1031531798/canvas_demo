@@ -24,6 +24,7 @@ defineProps({
     border-radius: 20px;
     border: 1px solid #888;
     background-color: $--color-bg;
+    margin: 10px 0;
     &-title {
       display: flex;
       flex-direction: row;

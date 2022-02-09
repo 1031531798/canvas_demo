@@ -19,7 +19,7 @@ const clockSetting = {
 }
 onMounted(() => {
   if (clockRef.value) {
-    
+    ctx = clockRef.value?.getContext('2d') as CanvasRenderingContext2D
     // 定时刷新
     setInterval(() => {
       drawClock()
@@ -28,7 +28,7 @@ onMounted(() => {
 })
 function drawClock () {
     if (clockRef.value) {
-      ctx = clockRef.value.getContext('2d') as CanvasRenderingContext2D
+      ctx = ctx || clockRef.value.getContext('2d') as CanvasRenderingContext2D
       ctx.clearRect(0, 0, 600, 200)
       // 绘制外圈
       ctx.beginPath();
@@ -95,7 +95,6 @@ function drawHoursLine () {
     context.moveTo(300, 100)
     context.lineTo(300 + Math.cos(sAngle) * sLen, 100 + Math.sin(sAngle) * sLen )
     context.stroke()
-    console.error(cSecond)
   }
 }
 </script>

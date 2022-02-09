@@ -1,24 +1,21 @@
 # canvas-demo
 
-## Project setup
-```
-yarn install
-```
+构建项目
 
-### Compiles and hot-reloads for development
 ```
+git clone https://github.com/1031531798/canvas_demo.git
+
+yarn install
+
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+个人学习canvas 项目
+
+vue3 + Typescript + sass 开发 canvas 案例
+
+持续更新中 一起学习canvas 动画 和 游戏吧
+
+

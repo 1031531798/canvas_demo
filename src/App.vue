@@ -1,12 +1,16 @@
 
 <script setup lang="ts">
 import Clock from './views/clock.vue'
+import CanvasOrHtml from './views/canvasOnHtml.vue'
+// import Map from './components/map/Map.vue';
 </script>
 
 <template>
   <div id="app">
     <div class="canvas-list">
+      <!-- <Map></Map> -->
       <Clock></Clock>
+      <CanvasOrHtml></CanvasOrHtml>
     </div>
   </div>
 </template>

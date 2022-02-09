@@ -11,7 +11,7 @@
 import Map from './map'
 import {onMounted} from 'vue'
 onMounted(() => {
-  const map = new Map({
+  new Map({
     container: 'myMap',
     accessToken: 'pk.eyJ1IjoieXVuZXI5OTY4IiwiYSI6ImNrazY1cTh1bzAwc24yd3AyMzBnbmtiMXYifQ.KmABHgQ1OZ4EVax3poOzyA',
     style: require('./mapUrl/LandSea.json'),
@@ -21,7 +21,6 @@ onMounted(() => {
     trackResize: true,
     crossSourceCollisions: false
   }).init();
-  console.log(map)
 })
 </script>
 
@@ -30,8 +29,8 @@ onMounted(() => {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 1200px;
+  height: 600px;
   #myMap{
     width: 100%;
     height: 100%;
@@ -39,7 +38,7 @@ onMounted(() => {
 }
 .fill-screen {
   position: absolute;
-  display: none;
+  // display: none;
   will-change: transform;
 }
 .mapboxgl-ctrl-bottom-right{
