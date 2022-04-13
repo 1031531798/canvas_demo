@@ -1,5 +1,5 @@
 <template>
-  <card-box title="gl鼠标绘制点" icon="icon-shizhong">
+  <card-box title="webgl鼠标绘制点" icon="icon-shizhong">
     <canvas id="glMousePoint" width="600" height="200" ref="glMousePoint"></canvas>
   </card-box>
 </template>

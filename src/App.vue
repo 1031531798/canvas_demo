@@ -4,6 +4,7 @@ import Clock from './views/clock.vue'
 import CanvasOrHtml from './views/canvasOnHtml.vue'
 import Bezier from './views/bezier.vue'
 import GlMousePoint from './views/webgl/glMousePoint.vue';
+import GlLine from './views/webgl/glLine.vue';
 // import Map from './components/map/Map.vue';
 </script>
 
@@ -15,6 +16,7 @@ import GlMousePoint from './views/webgl/glMousePoint.vue';
       <CanvasOrHtml></CanvasOrHtml>
       <Bezier></Bezier>
       <GlMousePoint></GlMousePoint>
+      <GlLine></GlLine>
     </div>
   </div>
 </template>
