@@ -2,6 +2,8 @@
 <script setup lang="ts">
 import Clock from './views/clock.vue'
 import CanvasOrHtml from './views/canvasOnHtml.vue'
+import Bezier from './views/bezier.vue'
+import GlMousePoint from './views/webgl/glMousePoint.vue';
 // import Map from './components/map/Map.vue';
 </script>
 
@@ -11,6 +13,8 @@ import CanvasOrHtml from './views/canvasOnHtml.vue'
       <!-- <Map></Map> -->
       <Clock></Clock>
       <CanvasOrHtml></CanvasOrHtml>
+      <Bezier></Bezier>
+      <GlMousePoint></GlMousePoint>
     </div>
   </div>
 </template>
@@ -26,8 +30,6 @@ import CanvasOrHtml from './views/canvasOnHtml.vue'
   color: #2c3e50;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
   position: relative;
   &::after {
     content: '';
@@ -39,12 +41,16 @@ import CanvasOrHtml from './views/canvasOnHtml.vue'
     filter: blur(10px);
   }
   .canvas-list {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 620px);
+    align-content: center;
     justify-content: center;
+    grid-gap: 20px;
     padding: 10px;
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: repeat(1, 600px);
+    }
   }
 }
 </style>

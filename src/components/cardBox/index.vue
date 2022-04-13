@@ -24,13 +24,11 @@ defineProps({
     border-radius: 20px;
     border: 1px solid #888;
     background-color: $--color-bg;
-    margin: 10px 0;
     &-title {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      width: 100%;
       padding: 10px 20px;
       span {
         margin-left: 10px;

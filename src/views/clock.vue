@@ -1,16 +1,15 @@
 <template>
-  <CardBox title="canvas时钟" icon="icon-shizhong">
+  <card-box title="canvas时钟" icon="icon-shizhong">
     <canvas id="clockCanvas" width="600" height="200" ref="clockRef"></canvas>
-  </CardBox>
+  </card-box>
 </template>
 
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import CardBox from '@/components/cardBox/index.vue'
 const clockRef = ref<HTMLCanvasElement | null>(null)
 let ctx: CanvasRenderingContext2D | null = null
 const clockSetting = {
-  hoursLen: 40,
+  hoursLen: 35,
   hoursWidth: 3,
   minuteLen: 50,
   minuteWidth: 2,
@@ -69,8 +68,10 @@ function drawHoursLine () {
     const context = ctx as CanvasRenderingContext2D
     context.beginPath()
     let cHours = new Date().getHours()
+    let text = 'AM'
     if (cHours >= 12) {
       cHours -= 12
+      text = 'PM'
     }
     const cMinute = new Date().getMinutes()
     const cSecond = new Date().getSeconds()
@@ -81,20 +82,27 @@ function drawHoursLine () {
     context.moveTo(300, 100)
     context.lineTo(300 + Math.cos(hAngle) * hLen, 100 + Math.sin(hAngle) * hLen )
     context.stroke()
-    // 绘制时针 
-    const mAngle = Math.PI / 6 * (Number(cMinute) / 5 + (cSecond / 60) - 3)
+    // 绘制分针 
+    const mAngle = Math.PI / 6 * (Number(cMinute) / 5 - 3)
     const mLen = clockSetting.minuteLen
     context.lineWidth = clockSetting.minuteWidth || 2
     context.moveTo(300, 100)
     context.lineTo(300 + Math.cos(mAngle) * mLen, 100 + Math.sin(mAngle) * mLen )
     context.stroke()
-    // 绘制时针 
+    // 绘制秒针 
     const sAngle = Math.PI / 6 * (Number(cSecond) / 5  - 3)
     const sLen = clockSetting.secondLen
     context.lineWidth = clockSetting.secondWidth || 1
     context.moveTo(300, 100)
     context.lineTo(300 + Math.cos(sAngle) * sLen, 100 + Math.sin(sAngle) * sLen )
     context.stroke()
+    // 绘制AM/PM
+    const textWidth = context.measureText(text).width
+    context.fillText(text, 300 - textWidth/2, 100 - 40)
+    let font = context.font
+    context.font = "20px '微软雅黑'"
+    context.fillText(`${cHours}:${cMinute}:${cSecond} ${text}`, 400 - textWidth/2, 20)
+    context.font = font
   }
 }
 </script>
