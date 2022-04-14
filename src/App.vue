@@ -5,6 +5,7 @@ import CanvasOrHtml from './views/canvasOnHtml.vue'
 import Bezier from './views/bezier.vue'
 import GlMousePoint from './views/webgl/glMousePoint.vue';
 import GlLine from './views/webgl/glLine.vue';
+import GlPolygon from './views/webgl/glPolygon.vue';
 // import Map from './components/map/Map.vue';
 </script>
 
@@ -17,6 +18,7 @@ import GlLine from './views/webgl/glLine.vue';
       <Bezier></Bezier>
       <GlMousePoint></GlMousePoint>
       <GlLine></GlLine>
+      <GlPolygon></GlPolygon>
     </div>
   </div>
 </template>

@@ -5,50 +5,53 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { WebGl } from '../../utils/webgl';
 const glLine = ref<HTMLCanvasElement | null>(null)
 let gl: WebGLRenderingContext | null | undefined = null
 const init = () => {
   initWebGl()
 }
 function initWebGl() {
-  gl = glLine.value?.getContext('webgl')
-  if (glLine.value && gl) {
-    gl.viewport(0, 0, glLine.value?.clientWidth, glLine.value?.clientHeight)
-    iniShaders(gl,
+  const webgl = new WebGl({
+     el: glLine.value || 'glLine'
+  })
+  gl = webgl.initGl()
+  if (gl && webgl) {
+    webgl.iniShaders(
       `
       attribute vec4 a_position;
       void main() { gl_Position = vec4(a_position); gl_PointSize = 60.0; }`,
       `void main() { gl_FragColor = vec4(0.6, 1, 0.8, 1.0); }`)
-    initBuffer()
+    initBuffer(webgl)
     draw()
   }
 }
-function iniShaders(gl: WebGLRenderingContext, vsSource: string, fsSource: string) {
-  // 创建gl程序
-  const program = gl.createProgram() as WebGLProgram
-  // 创建定点着色器
-  const vertexShader = gl.createShader(gl.VERTEX_SHADER) as WebGLShader
-  gl.shaderSource(vertexShader, vsSource)
-  gl.compileShader(vertexShader)
-  const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER) as WebGLShader
-  gl.shaderSource(fragmentShader, fsSource)
-  gl.compileShader(fragmentShader)
-  gl.attachShader(program, vertexShader)
-  gl.attachShader(program, fragmentShader)
-  //连接webgl上下文对象和程序对象
-  gl.linkProgram(program);
-  //启动程序对象
-  gl.useProgram(program);
-  //将程序对象挂到上下文对象上
-  gl.program = program;
-}
-function initBuffer () {
+// function iniShaders(gl: WebGLRenderingContext, vsSource: string, fsSource: string) {
+//   // 创建gl程序
+//   const program = gl.createProgram() as WebGLProgram
+//   // 创建定点着色器
+//   const vertexShader = gl.createShader(gl.VERTEX_SHADER) as WebGLShader
+//   gl.shaderSource(vertexShader, vsSource)
+//   gl.compileShader(vertexShader)
+//   const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER) as WebGLShader
+//   gl.shaderSource(fragmentShader, fsSource)
+//   gl.compileShader(fragmentShader)
+//   gl.attachShader(program, vertexShader)
+//   gl.attachShader(program, fragmentShader)
+//   //连接webgl上下文对象和程序对象
+//   gl.linkProgram(program);
+//   //启动程序对象
+//   gl.useProgram(program);
+//   //将程序对象挂到上下文对象上
+//   gl.program = program;
+// }
+function initBuffer (webgl: any) {
   const pointList = [
     0.5, 0.2, 0, 1.0,
     0.6, 0.7, 0, 1.0,
     0.6, 0.6, 0, 1.0,
   ]
-  let aPosition = gl?.getAttribLocation(gl.program, 'a_position') as number
+  let aPosition = gl?.getAttribLocation(webgl.program, 'a_position') as number
   let pointPostion = new Float32Array(pointList)
   if (gl) {
       // 创建webgl 缓冲区
