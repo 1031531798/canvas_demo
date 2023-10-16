@@ -1,7 +1,7 @@
 <template>
-  <card-box title="多边形" icon="icon-shizhong">
+  <CardBox title="多边形" icon="icon-shizhong">
     <canvas id="polygonCanvas" width="600" height="200" ref="polygonRef"></canvas>
-  </card-box>
+  </CardBox>
 </template>
 <script setup lang="ts">
   import {onMounted, ref} from 'vue'

@@ -1,7 +1,7 @@
 <template>
-  <card-box title="webgl绘制线" icon="icon-shizhong">
+  <CardBox title="webgl绘制线" icon="icon-shizhong">
     <canvas id="glLine" width="600" height="200" ref="glLine"></canvas>
-  </card-box>
+  </CardBox>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
@@ -13,7 +13,7 @@ const init = () => {
 }
 function initWebGl() {
   const webgl = new WebGl({
-     el: glLine.value || 'glLine'
+     el: GlLine.value || 'GlLine.vue'
   })
   gl = webgl.initGl()
   if (gl && webgl) {

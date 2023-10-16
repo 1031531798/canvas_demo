@@ -1,11 +1,8 @@
 
 <script setup lang="ts">
-import Clock from './views/clock.vue'
-import CanvasOrHtml from './views/canvasOnHtml.vue'
-import Bezier from './views/bezier.vue'
-import GlMousePoint from './views/webgl/glMousePoint.vue';
-import GlLine from './views/webgl/glLine.vue';
-import GlPolygon from './views/webgl/glPolygon.vue';
+import Clock from './views/Clock.vue'
+import CanvasOrHtml from './views/CanvasOnHtml.vue'
+import Bezier from './views/Bezier.vue'
 // import Map from './components/map/Map.vue';
 </script>
 
@@ -16,9 +13,6 @@ import GlPolygon from './views/webgl/glPolygon.vue';
       <Clock></Clock>
       <CanvasOrHtml></CanvasOrHtml>
       <Bezier></Bezier>
-      <GlMousePoint></GlMousePoint>
-      <GlLine></GlLine>
-      <GlPolygon></GlPolygon>
     </div>
   </div>
 </template>
@@ -42,7 +36,6 @@ import GlPolygon from './views/webgl/glPolygon.vue';
     height: 100%;
     z-index: -1;
     background-image: url('./assets/app_bg.jpg');
-    filter: blur(10px);
   }
   .canvas-list {
     width: 100%;

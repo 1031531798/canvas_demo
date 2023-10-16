@@ -1,9 +1,9 @@
 <template>
   <div class="canvas-html-box">
-    <card-box title="canva框选绘制（鼠标左键按下开始框选 松开结束框选）" icon="icon-jurassic_choose-mjbj">
+    <CardBox title="canva框选绘制（鼠标左键按下开始框选 松开结束框选）" icon="icon-jurassic_choose-mjbj">
       <canvas id="htmlCanvas" ref="htmlCanvasRef" width="600" height="200">
       </canvas>
-    </card-box>
+    </CardBox>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ onMounted(() => {
       }else {
         ctx?.clearRect(0, 0, 600, 300)
       }
-      
+
     }, 28))
     // 监听鼠标按下事件 开始框选
     canvas.addEventListener('mousedown', (e) => {

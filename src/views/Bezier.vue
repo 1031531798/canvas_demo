@@ -1,7 +1,7 @@
 <template>
-  <card-box title="贝塞尔曲线" icon="icon-shizhong">
+  <CardBox title="贝塞尔曲线" icon="icon-shizhong">
     <canvas id="bezierCanvas" width="600" height="200" ref="bezierRef"></canvas>
-  </card-box>
+  </CardBox>
 </template>
 <script setup lang="ts">
   import {onMounted, ref} from 'vue'

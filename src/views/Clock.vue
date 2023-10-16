@@ -1,7 +1,7 @@
 <template>
-  <card-box title="canvas时钟" icon="icon-shizhong">
+  <CardBox title="canvas时钟" icon="icon-shizhong">
     <canvas id="clockCanvas" width="600" height="200" ref="clockRef"></canvas>
-  </card-box>
+  </CardBox>
 </template>
 
 <script setup lang="ts">
@@ -75,21 +75,21 @@ function drawHoursLine () {
     }
     const cMinute = new Date().getMinutes()
     const cSecond = new Date().getSeconds()
-    // 绘制时针 
+    // 绘制时针
     const hAngle = Math.PI / 6 * (Number(cHours) + (cMinute / 60) - 3)
     const hLen = clockSetting.hoursLen
     context.lineWidth = clockSetting.hoursWidth || 3
     context.moveTo(300, 100)
     context.lineTo(300 + Math.cos(hAngle) * hLen, 100 + Math.sin(hAngle) * hLen )
     context.stroke()
-    // 绘制分针 
+    // 绘制分针
     const mAngle = Math.PI / 6 * (Number(cMinute) / 5 - 3)
     const mLen = clockSetting.minuteLen
     context.lineWidth = clockSetting.minuteWidth || 2
     context.moveTo(300, 100)
     context.lineTo(300 + Math.cos(mAngle) * mLen, 100 + Math.sin(mAngle) * mLen )
     context.stroke()
-    // 绘制秒针 
+    // 绘制秒针
     const sAngle = Math.PI / 6 * (Number(cSecond) / 5  - 3)
     const sLen = clockSetting.secondLen
     context.lineWidth = clockSetting.secondWidth || 1

@@ -1,7 +1,7 @@
 <template>
-  <card-box title="webgl鼠标绘制点" icon="icon-shizhong">
+  <CardBox title="webgl鼠标绘制点" icon="icon-shizhong">
     <canvas id="glMousePoint" width="600" height="200" ref="glMousePoint"></canvas>
-  </card-box>
+  </CardBox>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
@@ -11,9 +11,9 @@ const init = () => {
   initWebGl()
 }
 function initWebGl() {
-  gl = glMousePoint.value?.getContext('webgl')
-  if (glMousePoint.value && gl) {
-    gl.viewport(0, 0, glMousePoint.value?.clientWidth, glMousePoint.value?.clientHeight)
+  gl = GlMousePoint.value?.getContext('webgl')
+  if (GlMousePoint.value && gl) {
+    gl.viewport(0, 0, GlMousePoint.value?.clientWidth, GlMousePoint.value?.clientHeight)
     iniShaders(gl,
       `
       attribute vec4 a_position;
@@ -45,12 +45,12 @@ function iniShaders(gl: WebGLRenderingContext, vsSource: string, fsSource: strin
 function initBuffer () {
   const pointList = []
   let aPosition = gl?.getAttribLocation(gl.program, 'a_position') as number
-  glMousePoint.value && glMousePoint.value.addEventListener('mousedown', (e) => {
-    if (glMousePoint.value) {
+  GlMousePoint.value && GlMousePoint.value.addEventListener('mousedown', (e) => {
+    if (GlMousePoint.value) {
       const x = e.offsetX
       const y = e.offsetY
-      const width = glMousePoint.value.clientWidth / 2
-      const height = glMousePoint.value.clientHeight / 2
+      const width = GlMousePoint.value.clientWidth / 2
+      const height = GlMousePoint.value.clientHeight / 2
       const left =  (x - width) / width
       const top = 1 - y / height
       pointList.push(left)

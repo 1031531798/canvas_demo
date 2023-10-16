@@ -1,7 +1,7 @@
 <template>
-  <card-box title="webgl绘制多边形" icon="icon-shizhong">
+  <CardBox title="webgl绘制多边形" icon="icon-shizhong">
     <canvas id="glPolygon" width="600" height="200" ref="glPolygon"></canvas>
-  </card-box>
+  </CardBox>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
@@ -14,7 +14,7 @@ const init = () => {
 }
 function initWebGl() {
   const webgl = new WebGl({
-    el: glPolygon.value || 'glPolygon'
+    el: GlPolygon.value || 'GlPolygon.vue'
   })
   gl = webgl.initGl()
   if (gl && webgl) {
