@@ -3,6 +3,7 @@
 import Clock from './views/Clock.vue'
 import CanvasOrHtml from './views/CanvasOnHtml.vue'
 import Bezier from './views/Bezier.vue'
+import ParticleText from "@/views/particle/ParticleText.vue";
 // import Map from './components/map/Map.vue';
 </script>
 
@@ -13,6 +14,7 @@ import Bezier from './views/Bezier.vue'
       <Clock></Clock>
       <CanvasOrHtml></CanvasOrHtml>
       <Bezier></Bezier>
+      <ParticleText />
     </div>
   </div>
 </template>
@@ -35,7 +37,7 @@ import Bezier from './views/Bezier.vue'
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url('./assets/app_bg.jpg');
+    background-image: url('./assets/home_bg.png');
   }
   .canvas-list {
     width: 100%;
