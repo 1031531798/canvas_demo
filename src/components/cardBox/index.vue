@@ -24,7 +24,7 @@ defineProps({
     border-radius: 20px;
     position: relative;
     background-color: transparent;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(25px);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
     &-title {
       display: flex;

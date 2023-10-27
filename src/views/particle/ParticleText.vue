@@ -1,6 +1,6 @@
 <template>
   <CardBox title="文字转换粒子形态" icon="icon-shizhong">
-    <div>
+    <div class="flex flex-row m-1">
       <input v-model="text" placeholder="输入转换的文字" />
       <button @click="transformText">转换</button>
       <button @click="clearCanvas">清除</button>
@@ -11,6 +11,7 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
 import Particle from './particle'
+
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 let ctx: CanvasRenderingContext2D | null = null
 const text = ref('')
