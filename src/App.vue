@@ -4,6 +4,7 @@ import CanvasOrHtml from "./views/CanvasOnHtml.vue";
 import Bezier from "./views/Bezier.vue";
 import ParticleText from "@/views/particle/ParticleText.vue";
 import ParticleImage from "@/views/particle/ParticleImage.vue";
+import ParticlePhysics from "@/views/particle/ParticlePhysics.vue";
 // import Map from './components/map/Map.vue';
 </script>
 
@@ -15,6 +16,7 @@ import ParticleImage from "@/views/particle/ParticleImage.vue";
     <Bezier></Bezier>
     <ParticleText />
     <ParticleImage />
+    <ParticlePhysics />
   </div>
 </template>
 

@@ -1,34 +1,15 @@
 <template>
-  <CardBox title="生成粒子图片" icon="icon-shizhong">
+  <CardBox title="粒子物理效果" icon="icon-shizhong">
     <div class="flex flex-row mb-10">
       <div class="flex flex-col">
-        <div class="flex flex-row mb-4 mr-10">
-          <div
-            class="text-white p-2 bg-indigo-500 rounded-md ml-4 mr-4 cursor-pointer"
-            @click="uploadImage"
-          >
-            上传图片
-          </div>
-          <div
-            class="text-white p-2 bg-sky-500/100 rounded-md mr-4 cursor-pointer"
-            @click="transformImage"
-          >
-            转换
-          </div>
-          <div
-            class="text-white p-2 bg-green-500 rounded-md mr-4 cursor-pointer"
-            v-if="showDownload"
-            @click="downloadImage"
-          >
-            下载
-          </div>
-        </div>
         <div class="flex flex-col align-center justify-center">
           <img
+            v-show="false"
             ref="imageDom"
-            width="200"
-            @load="handleLoad"
-            :src="nativeImage.src"
+            width="300"
+            height="400"
+            @load="imageLoad"
+            src="./a7e3eba32946690f-removebg-preview.png"
             :alt="nativeImage.name"
           />
           <span class="text-white p-2">{{ nativeImage.name }}</span>
@@ -37,8 +18,8 @@
       <div class="flex flex-row mt-2 mb-2">
         <canvas
           id="particleCanvas"
-          width="300"
-          height="200"
+          width="600"
+          height="400"
           ref="particleCanvas"
         ></canvas>
       </div>
@@ -48,7 +29,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import Particle from "./particle";
-import { getFileLocalUrl, openFileSelect } from "@/utils/file";
+import PhysicsParticle from "@/views/particle/physicsParticle";
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null);
 let ctx: CanvasRenderingContext2D | null = null;
@@ -56,6 +37,10 @@ const imageDom = ref<HTMLImageElement>();
 let particles: Particle[] = [];
 const canvasImage = ref("");
 const showDownload = ref<boolean>(false)
+const mouse = {
+  x: 0,
+  y: 0
+}
 const nativeImage = ref<{ src: string; name: string; file: File | null }>({
   src: "",
   name: "",
@@ -64,30 +49,16 @@ const nativeImage = ref<{ src: string; name: string; file: File | null }>({
 onMounted(() => {
   if (particleCanvas.value) {
     ctx = particleCanvas.value?.getContext("2d") as CanvasRenderingContext2D;
+    particleCanvas.value.addEventListener('mousemove', (e) => {
+      mouse.x = e.offsetX
+      mouse.y = e.offsetY
+    })
   }
 });
-function handleLoad (e) {
-  console.log(e)
-}
-function uploadImage() {
-  openFileSelect({ accept: "image/*" }).then((files) => {
-    if (files) {
-      clearCanvas()
-      nativeImage.value.name = files[0].name;
-      nativeImage.value.file = files[0];
-      getFileLocalUrl(files[0]).then((url) => {
-        if (typeof url === "string") {
-          nativeImage.value.src = url;
-        }
-      });
-    }
-  });
+function imageLoad () {
+  transformImage()
 }
 function transformImage() {
-  if (!nativeImage.value.file || !imageDom.value) {
-    alert("请上传图片");
-    return;
-  }
   if (ctx && particleCanvas.value) {
     drawImage();
     getImagePoint(particleCanvas.value, ctx);
@@ -97,12 +68,15 @@ function transformImage() {
 }
 function drawImage() {
   if (ctx && particleCanvas.value && imageDom.value) {
+    const canvas = particleCanvas.value
+    const sx = canvas?.width / 2 - imageDom.value?.width / 2
+    const sy = canvas?.height / 2 - imageDom.value?.height / 2
     ctx.drawImage(
       imageDom.value,
-      0,
-      0,
-      particleCanvas.value.width,
-      particleCanvas.value.height
+      sx,
+      sy,
+      imageDom.value.width,
+      imageDom.value.height
     );
   }
 }
@@ -113,7 +87,7 @@ function getImagePoint(
 ) {
   canvasImage.value = canvas.toDataURL("image/png");
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const diff = 2;
+  const diff = 3;
   for (let j = 0; j < canvas.height; j += diff) {
     for (let i = 0; i < canvas.width; i += diff) {
       const opacityIndex = (i + j * canvas.width) * 4 + 3;
@@ -124,7 +98,7 @@ function getImagePoint(
           imageData.data[opacityIndex]
         })`;
         // 放入粒子对象
-        let par = new Particle({ ctx, x: i, y: j, size: diff, color });
+        let par = new PhysicsParticle({ canvas: particleCanvas.value, ctx, x: i, y: j, size: diff, color, mouse });
         particles.push(par);
       }
     }
@@ -143,24 +117,6 @@ function animate() {
     for (const particle of particles) {
       particle.update();
     }
-  }
-}
-function downloadImage() {
-  if (ctx && particleCanvas.value) {
-    const dataURL = particleCanvas.value.toDataURL("image/png");
-    const a = document.createElement("a");
-    // 将数据 URL 分配给下载链接的 href 属性
-    a.href = dataURL;
-    // 设置下载链接的 download 属性，指定文件名
-    a.download = "canvas_image.png";
-    // 触发下载链接的点击事件
-    a.click();
-  }
-}
-function clearCanvas () {
-  if (ctx && particleCanvas.value) {
-    particles = []
-    ctx.clearRect(0, 0, particleCanvas.value.width, particleCanvas.value.height);
   }
 }
 </script>

@@ -10,6 +10,7 @@ type ParticleConfig = {
   originalX?: number
   originalY?: number
   recoverSpeed?: number
+  mouse?: {x: number, y: number}
 }
 // 粒子类
 class Particle {
@@ -24,9 +25,10 @@ class Particle {
   speed: number;
   recoverTime: null;
   recoverSpeed: number;
+  mouse: {x: number, y: number} | undefined
   constructor(config: ParticleConfig) {
     const {ctx, x, y, type = 'rect', color = 'orange', size = 10, speed= 2,
-      originalX, originalY, recoverSpeed = 2 } = config
+      originalX, originalY, recoverSpeed = 2, mouse } = config
     this.ctx = ctx;
     this.x = x;
     this.y = y;
@@ -38,12 +40,12 @@ class Particle {
     this.speed = speed;
     this.recoverTime = null
     this.recoverSpeed = recoverSpeed
+    this.mouse = mouse
   }
 
   draw() {
     if (this.ctx) {
       this.ctx.beginPath();
-      // ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       this.ctx.fillStyle = this.color;
       this.ctx.fillRect(this.x, this.y, this.size, this.size);
     }
