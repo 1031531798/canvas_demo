@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode development",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vite ",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@unocss/preset-wind": "^0.56.5",
@@ -14,21 +14,15 @@
     "d3": "^7.3.0",
     "echarts": "4.9.0",
     "lodash": "^4.17.21",
-    "mapbox-gl": "^2.7.0",
-    "vue": "^3.0.0",
-    "vue-class-component": "^8.0.0-0"
+    "vite": "^4.5.0",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@types/d3": "^7.1.0",
     "@types/lodash": "^4.14.178",
-    "@types/mapbox-gl": "^2.6.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
-    "@unocss/webpack": "^0.56.5",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vitejs/plugin-vue": "^4.4.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-eslint": "^10.1.0",

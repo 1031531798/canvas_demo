@@ -34,7 +34,7 @@ defineProps({
       font-size: 20px;
       font-weight: bold;
       padding: 10px 20px;
-      color: $--text-color;
+      color: #fff;
       span {
         margin-left: 10px;
       }

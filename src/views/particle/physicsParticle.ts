@@ -52,7 +52,6 @@ class PhysicsParticle {
     this.vx = 0
     this.vy = 0
   }
-
   draw() {
     if (this.ctx) {
       this.ctx.beginPath();
